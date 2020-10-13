@@ -1,7 +1,7 @@
 
 ## Golang Assignment
 
-sumitted by :: Diksha Sharma
+submitted by :: Diksha Sharma
 
 # Movies management
 
