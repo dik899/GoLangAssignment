@@ -84,9 +84,10 @@ func DeleteMovie(w http.ResponseWriter, r *http.Request) {
 	}
 	respondWithJson(w, http.StatusOK, map[string]string{"result": "success"})
 }
+
+// GET list of movies by giving perticular release year
 func FindMovieByYear(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	log.Print("params var ::",params["release_year"])
 	i1, err := strconv.Atoi(params["release_year"])
 	if err == nil {
 		fmt.Println(i1)
@@ -100,9 +101,9 @@ func FindMovieByYear(w http.ResponseWriter, r *http.Request) {
 	respondWithJson(w, http.StatusOK, movie)
 }
 
+// GET list of movies below a given rating
 func FindMovieBelowRating(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	log.Print("params var ::",params["rating"])
 	i1, err := strconv.Atoi(params["rating"])
 	if err == nil {
 		fmt.Println(i1)
@@ -114,9 +115,10 @@ func FindMovieBelowRating(w http.ResponseWriter, r *http.Request) {
 	}
 	respondWithJson(w, http.StatusOK, movie)
 }
+
+// GET list of movies above a given rating
 func FindMovieAboveRating(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	log.Print("params var ::",params["rating"])
 	i1, err := strconv.Atoi(params["rating"])
 	if err == nil {
 		fmt.Println(i1)
@@ -129,9 +131,9 @@ func FindMovieAboveRating(w http.ResponseWriter, r *http.Request) {
 	respondWithJson(w, http.StatusOK, movie)
 }
 
+// GET list of movies upto a given year
 func FindMovieUptoYear(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	log.Print("params var ::",params["release_year"])
 	i1, err := strconv.Atoi(params["release_year"])
 	if err == nil {
 		fmt.Println(i1)
@@ -158,7 +160,6 @@ func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
 // Parse the configuration file 'config.toml', and establish a connection to DB
 func init() {
 	config.Read()
-
 	log.Print(config.Server)
 	dao.Server = config.Server
 	dao.Database = config.Database
@@ -174,12 +175,10 @@ func main() {
 	r.HandleFunc("/movies", DeleteMovie).Methods("DELETE")
 	r.HandleFunc("/movies/{id}", FindMovieByID).Methods("GET")
 	r.HandleFunc("/movies/release_year/{release_year}",FindMovieByYear).Methods("GET")
-
 	r.HandleFunc("/movies/rating/below/{rating}",FindMovieBelowRating).Methods("GET")
 	r.HandleFunc("/movies/rating/above/{rating}",FindMovieAboveRating).Methods("GET")
 	r.HandleFunc("/movies/release_year/upto/{release_year}",FindMovieUptoYear).Methods("GET")
-
-
+	
 	if err := http.ListenAndServe(":3000", r); err != nil {
 		log.Fatal(err)
 	}
