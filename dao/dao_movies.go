@@ -4,7 +4,7 @@ import (
 	"log"	
 
 
-	."github.ibm.com/diksha/movies-restapi/models"
+	."github.com/diksha/movies-restapi/models"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 
