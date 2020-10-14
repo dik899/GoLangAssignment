@@ -10,9 +10,9 @@ import (
 	"gopkg.in/mgo.v2/bson"
 
 	"github.com/gorilla/mux"
-	. "github.ibm.com/diksha/movies-restapi/config"
-	. "github.ibm.com/diksha/movies-restapi/dao"
-	. "github.ibm.com/diksha/movies-restapi/models"
+	. "github.com/diksha/movies-restapi/config"
+	. "github.com/diksha/movies-restapi/dao"
+	. "github.com/diksha/movies-restapi/models"
 )
 
 var config = Config{}
